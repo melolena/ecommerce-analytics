@@ -1,116 +1,113 @@
 # E-commerce Analytics
 
-A portfolio project exploring e-commerce sales and operations with **Python, SQL, and Power BI**.
+An independent portfolio project exploring e-commerce sales and operations with **Python, SQL, and Power BI**.
 
-**Status:** Initial project setup. Analyses and dashboard findings will be added only after the data has been inspected and validated.
+**Status:** Initial setup. Data exploration, metrics, and dashboard findings will be added after they have been implemented and validated.
 
-## Business goal
+## Business objective
 
-Turn raw e-commerce data into reliable answers about sales performance, product categories, payments, delivery, and customer experience.
+Transform raw e-commerce data into reliable insights that help answer questions about sales performance, product categories, payments, delivery, and customer experience.
 
-## Data source
+## Dataset
 
-The project will use the [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
+This project uses the [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
 
-- The dataset is historical and anonymized; it does not represent today's market.
-- Follow the dataset's access conditions and licence.
-- Do not commit the downloaded raw CSV files. Keep them in `data/raw/`, which is ignored by Git.
+- The records are historical and anonymized; they should not be treated as a representation of today's market.
+- Access and use must follow the dataset's licence and source-platform terms.
+- Raw data files will be kept locally and will not be committed to this repository by default.
 
-## Planned stack
+## Questions to explore
 
-- **Python / pandas** for data inspection and transformation
-- **SQL / SQLite** for storage and analytical queries
-- **Power BI** for interactive reporting
-- **pytest** for automated checks
+- How do order volume and sales value change over time?
+- Which product categories and states contribute the most to item revenue?
+- How does freight value compare with item revenue?
+- Which payment methods are most commonly used?
+- What share of eligible delivered orders arrived by the estimated delivery date?
+- How are delivery outcomes related to customer review scores?
+- What share of identifiable customers placed more than one order during the observed period?
 
-## Questions to investigate
+## Planned technology stack
 
-1. How do revenue and order volume change over time?
-2. Which product categories and states contribute most to item revenue?
-3. How do freight costs compare with item values?
-4. Which payment methods are most common?
-5. What share of delivered orders arrived by the estimated date?
-6. How do delivery outcomes relate to customer review scores?
-7. What share of identifiable customers placed more than one order?
+- Python and pandas: data inspection, cleaning, and transformation
+- SQL and SQLite: structured storage, queries, and reconciliation checks
+- Power BI: interactive reports and visual analysis
+- pytest: automated tests for data transformations and metric logic
 
-## Metric safeguards
+## Planned deliverables
+
+1. A documented data preparation workflow.
+2. A relational analytical model with clearly defined table granularity.
+3. SQL queries and checks to validate key totals.
+4. An interactive Power BI report.
+5. Automated tests, screenshots, metric definitions, and setup instructions.
+
+## KPI principles
+
+Metric definitions and order-status rules will be documented before results are published.
 
 - Item revenue and freight will be reported separately.
-- Orders will be counted distinctly, not by item rows.
-- Payment totals will not be added to item and freight totals, avoiding double counting.
-- On-time delivery will use delivered orders with valid delivery and estimated-delivery dates.
-- Profit margin and stock availability will not be claimed because this dataset does not provide the required product-cost and inventory information.
+- Orders will be counted by distinct order ID, not by item rows.
+- Payment values will not be added to item and freight totals, which could double-count value.
+- The on-time delivery rate will use delivered orders with valid delivery and estimated-delivery dates.
+- Profit margin and inventory availability will not be reported unless suitable cost and stock data are available.
 
-The eligible order statuses and exclusions for each KPI will be defined after inspecting the source data and documented before publishing results.
-
-## Project structure
+## Repository structure
 
 ```text
 ecommerce-analytics/
-├── data/
-│   ├── raw/             # Downloaded source CSVs (not committed)
-│   └── processed/       # Generated files (not committed by default)
-├── docs/                # Data dictionary and business rules
-├── notebooks/           # Exploratory analysis
-├── reports/             # Generated inventory and dashboard screenshots
-├── src/commercepulse/   # Reusable Python code
-├── sql/                 # Database schema and analytical queries
-├── powerbi/             # Power BI report and notes
-├── tests/               # Automated tests
-├── .gitignore
+├── data/                 # Raw and processed data (local files are not committed)
+├── docs/                 # Data dictionary and business rules
+├── notebooks/            # Exploratory analysis
+├── powerbi/              # Power BI report notes and files
+├── reports/              # Generated inventories and report evidence
+├── src/commercepulse/    # Reusable Python code
+├── sql/                  # SQL model and analytical queries
+├── tests/                # Automated tests
 ├── pyproject.toml
 └── requirements.txt
 ```
 
 ## Setup
 
-Use Python 3.10 or newer.
-
-```bash
-python -m venv .venv
-```
-
-Activate the environment, then install dependencies:
+Use Python 3.10 or newer. From the repository root, create and activate a virtual environment, then install the dependencies:
 
 ```powershell
-# Windows PowerShell
+python -m venv .venv
 .venv\Scripts\Activate.ps1
-```
-
-```bash
-# macOS / Linux
-source .venv/bin/activate
-```
-
-```bash
 python -m pip install -r requirements.txt
+python -m pip install -e .
 ```
 
-Download the dataset from Kaggle and place its CSV files in `data/raw/`. From the repository root, run:
+Download the Olist dataset and place its CSV files in `data/raw/`. Generate an initial inventory with:
 
-```bash
+```powershell
 python -m commercepulse.inspect_data
 ```
 
-The initial inspection script samples up to 1,000 rows per CSV and writes an inventory to `reports/data_inventory.csv`. The inventory is a first-look aid, not a full-data quality assessment.
+The inventory samples up to 1,000 rows per CSV and is saved to `reports/data_inventory.csv`. It is a first-look aid, not a full data-quality assessment.
 
-Run tests with:
+Prepare the source tables and load them into the local SQLite staging model:
 
-```bash
-pytest
+```powershell
+python -m commercepulse.prepare_data
+python -m commercepulse.load_sqlite
 ```
 
-## Current roadmap
+Prepared CSVs and the database are written to `data/processed/`; run summaries are saved to `reports/`.
 
-- [x] Create initial repository structure
-- [ ] Download and inspect the source data
-- [ ] Document data quality and business rules
-- [ ] Build the Python cleaning pipeline
-- [ ] Create SQL tables and analytical queries
+## Repository roadmap
+
+- [x] Download and inspect the source dataset
+- [x] Document initial data quality findings and business rules
+- [x] Build and validate the initial Python data preparation workflow
+- [x] Create the initial SQLite staging model and load prepared tables
+- [x] Define initial sales/review rules and add core analytics queries
+- [x] Record initial analysis results
+- [x] Define and calculate repeat-customer rate; document timestamp handling
 - [ ] Build the Power BI report
 - [ ] Add automated tests and reproducible setup instructions
 - [ ] Publish screenshots and evidence-based findings
 
-## About
+## About this project
 
-This is an independent portfolio project based on public data. It is not commissioned by or affiliated with Olist.
+This is an independent learning and portfolio project based on public data. It is not commissioned by or affiliated with Olist. All findings will be documented after they have been produced and validated.

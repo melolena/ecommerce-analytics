@@ -1,0 +1,70 @@
+-- Measures for the Power BI model built from the CSV exports.
+
+Delivered Orders =
+DISTINCTCOUNT(delivered_orders[order_id])
+
+Item Revenue =
+SUM(delivered_order_items[price])
+
+Freight Value =
+SUM(delivered_order_items[freight_value])
+
+Delivered Item Rows =
+COUNTROWS(delivered_order_items)
+
+Delivered Orders with Items =
+DISTINCTCOUNT(delivered_order_items[order_id])
+
+Average Freight per Item =
+DIVIDE([Freight Value], [Delivered Item Rows])
+
+Delivered Order Value =
+SUM(delivered_orders[order_value])
+
+Average Delivered Order Value =
+DIVIDE([Delivered Order Value], [Delivered Orders])
+
+On-Time Eligible Orders =
+CALCULATE(
+    DISTINCTCOUNT(delivered_orders[order_id]),
+    NOT(ISBLANK(delivered_orders[is_on_time]))
+)
+
+On-Time Orders =
+CALCULATE(
+    DISTINCTCOUNT(delivered_orders[order_id]),
+    delivered_orders[is_on_time] = 1
+)
+
+On-Time Delivery Rate =
+DIVIDE([On-Time Orders], [On-Time Eligible Orders])
+
+Late Orders =
+CALCULATE(
+    DISTINCTCOUNT(delivered_orders[order_id]),
+    delivered_orders[is_on_time] = 0
+)
+
+Delivered Orders Missing Delivery Dates =
+CALCULATE(
+    DISTINCTCOUNT(delivered_orders[order_id]),
+    ISBLANK(delivered_orders[is_on_time])
+)
+
+Reviewed Delivered Orders =
+CALCULATE(
+    DISTINCTCOUNT(delivered_orders[order_id]),
+    NOT(ISBLANK(delivered_orders[mean_review_score]))
+)
+
+Mean Order Review Score =
+AVERAGE(delivered_orders[mean_review_score])
+
+Payment Value =
+SUM(delivered_payments[payment_value])
+
+Delivered Orders Using Payment Method =
+DISTINCTCOUNT(delivered_payments[order_id])
+
+Repeat Customer Rate =
+MAX(repeat_customer_summary[repeat_customer_rate])
