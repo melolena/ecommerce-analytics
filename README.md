@@ -2,7 +2,7 @@
 
 An independent portfolio project exploring e-commerce sales and operations with **Python, SQL, and Power BI**.
 
-**Status:** Initial setup. Data exploration, metrics, and dashboard findings will be added after they have been implemented and validated.
+**Status:** The data preparation workflow, analytical model, and three-page Power BI report are complete. The report is available as a Power BI file and as a PDF export; page screenshots are included with the Power BI project files.
 
 ## Business objective
 
@@ -26,20 +26,20 @@ This project uses the [Brazilian E-Commerce Public Dataset by Olist](https://www
 - How are delivery outcomes related to customer review scores?
 - What share of identifiable customers placed more than one order during the observed period?
 
-## Planned technology stack
+## Technology stack
 
 - Python and pandas: data inspection, cleaning, and transformation
 - SQL and SQLite: structured storage, queries, and reconciliation checks
 - Power BI: interactive reports and visual analysis
 - pytest: automated tests for data transformations and metric logic
 
-## Planned deliverables
+## Deliverables
 
 1. A documented data preparation workflow.
 2. A relational analytical model with clearly defined table granularity.
 3. SQL queries and checks to validate key totals.
-4. An interactive Power BI report.
-5. Automated tests, screenshots, metric definitions, and setup instructions.
+4. An interactive Power BI report with Executive Overview, Product Performance, and Delivery & Customer Experience pages.
+5. A PDF export, page screenshots, metric definitions, and setup instructions.
 
 ## KPI principles
 
@@ -58,8 +58,8 @@ ecommerce-analytics/
 ├── data/                 # Raw and processed data (local files are not committed)
 ├── docs/                 # Data dictionary and business rules
 ├── notebooks/            # Exploratory analysis
-├── powerbi/              # Power BI report notes and files
-├── reports/              # Generated inventories and report evidence
+├── powerbi/              # Power BI report, DAX measures, design notes, and page screenshots
+├── reports/              # PDF report export and generated data summaries
 ├── src/commercepulse/    # Reusable Python code
 ├── sql/                  # SQL model and analytical queries
 ├── tests/                # Automated tests
@@ -95,6 +95,18 @@ python -m commercepulse.load_sqlite
 
 Prepared CSVs and the database are written to `data/processed/`; run summaries are saved to `reports/`.
 
+## Power BI report
+
+The completed report is saved as `powerbi/ecommerce_analytics.pbix`. A PDF export is available at `reports/ecommerce_analytics.pdf`, and PNG screenshots of each report page are in `powerbi/`.
+
+The report contains three pages:
+
+1. **Executive Overview** — delivered sales, order value, freight, delivery timeliness, repeat customers, monthly revenue, state revenue, and payment-method usage.
+2. **Product Performance** — item revenue, freight, and order/item counts by product category.
+3. **Delivery & Customer Experience** — on-time delivery trends, delivery outcomes, review scores, and missing delivery-date counts.
+
+Metric definitions and report design decisions are documented in `docs/business_rules.md`, `powerbi/measures.dax`, and `powerbi/report_design.md`.
+
 ## Repository roadmap
 
 - [x] Download and inspect the source dataset
@@ -104,9 +116,9 @@ Prepared CSVs and the database are written to `data/processed/`; run summaries a
 - [x] Define initial sales/review rules and add core analytics queries
 - [x] Record initial analysis results
 - [x] Define and calculate repeat-customer rate; document timestamp handling
-- [ ] Build the Power BI report
+- [x] Build the three-page Power BI report and export a PDF
+- [x] Save screenshots of each report page
 - [ ] Add automated tests and reproducible setup instructions
-- [ ] Publish screenshots and evidence-based findings
 
 ## About this project
 
