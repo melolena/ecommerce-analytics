@@ -60,7 +60,7 @@ All five order date fields were parseable. Missing values were excluded from pai
 | `order_delivered_customer_date` | 2,965 | 0 |
 | `order_estimated_delivery_date` | 0 | 0 |
 
-| Rule | Valid pairs | Pairs without both dates | Violations |
+| Rule | Pairs with both timestamps | Pairs without both dates | Violations |
 |---|---:|---:|---:|
 | Purchase after approval | 99,281 | 160 | 0 |
 | Approval after carrier handoff | 97,644 | 1,797 | 1,359 |
