@@ -1,8 +1,8 @@
 # Power BI Report Design
 
-The report uses English labels and the approved metric rules in `../docs/business_rules.md`. Page designs are added and reviewed one at a time.
+The report uses English labels and the approved metric rules in `../docs/business_rules.md`. Page headings below distinguish the Power BI tab name from the title displayed on the canvas.
 
-## Page 1 — Executive Overview (approved)
+## Page 1 — Executive Overview (tab name; canvas title: Delivered Sales & Operational Performance)
 
 **Purpose:** Give a compact view of delivered sales and operational performance for the selected purchase period.
 
@@ -38,7 +38,7 @@ The report uses English labels and the approved metric rules in `../docs/busines
 - Format rates as percentages with two decimals.
 - Show a note that the data are historical and that the latest purchase dates do not have delivered orders in every month.
 
-## Page 2 — Product Performance (approved)
+## Page 2 — Product Performance (tab name; canvas title: Product Revenue & Freight Performance)
 
 **Purpose:** Compare delivered item revenue and freight across product categories.
 
@@ -56,8 +56,8 @@ The report uses English labels and the approved metric rules in `../docs/busines
 
 **Charts**
 
-1. Top 10 Product Categories by Item Revenue — horizontal bar chart, sorted descending.
-2. Freight Value by Product Category — horizontal bar chart using the same Top 10 categories and order as the revenue chart, so the two values can be compared directly.
+1. Top 10 Product Categories by Item Revenue — horizontal bar chart, sorted by Item Revenue descending.
+2. Freight Value and Item Revenue — horizontal bar chart using the same Top 10 categories and Item Revenue order as the revenue chart. Bar lengths show Freight Value, allowing category-by-category comparison while preserving the revenue ranking.
 3. Category Detail — table with category, item revenue, freight value, delivered item rows, and distinct delivered orders.
 
 **Model fields and measures**
@@ -71,7 +71,7 @@ The report uses English labels and the approved metric rules in `../docs/busines
 - Show `(missing category)` as its own category when the source product has no category.
 - Format currency as Brazilian reais (R$) with two decimals.
 
-## Page 3 — Delivery & Customer Experience (approved)
+## Page 3 — Delivery & Customer Experience (tab name and canvas title)
 
 **Purpose:** Show delivery timeliness and how order-level review scores vary with delivery outcome.
 

@@ -16,11 +16,11 @@ The script writes five UTF-8 CSV files to `data/processed/powerbi/`. Import them
 - `repeat_customer_summary.csv` — one full-period repeat-customer summary row.
 - `delivery_review_summary.csv` — review averages by on-time/late delivery outcome.
 
-Create the relationships and visuals described in `report_design.md`. Copy measures from `measures.dax` into the model.
+The completed PBIX, measures, design notes, and screenshots of all three report pages are included in this directory. `report_design.md` documents the report layout and metric behavior; `measures.dax` records the measures used by the report.
 
 ## Report pages
 
-Page designs are documented and reviewed one at a time in `report_design.md`. The first draft is the Executive Overview.
+The report contains the Executive Overview, Product Performance, and Delivery & Customer Experience pages. The report page tabs and canvas titles are documented in `report_design.md`.
 
 ## Refresh
 

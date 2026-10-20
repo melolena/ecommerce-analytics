@@ -46,9 +46,9 @@ Purchase timestamps range from 2016-09-04 21:15:19 to 2018-10-17 17:30:18.
 
 Eight orders marked `delivered` have no `order_delivered_customer_date`. A valid on-time-delivery denominator therefore needs to require both delivery and estimated-delivery dates, as stated in the KPI principles.
 
-## Follow-up before publishing metrics
+## Remaining interpretation checks
 
 - Validate timestamp chronological consistency. Source timestamps are used as provided, without timezone conversion.
 - Review late-period completeness before interpreting monthly trends; source purchase timestamps extend beyond the latest month with delivered orders.
-- Add automated checks for the preparation and metric logic.
-- Keep payment values separate from item and freight revenue unless a specific reconciliation question calls for a comparison.
+
+Automated checks for preparation and metric logic are implemented in `tests/`. Payment and revenue treatment is defined in `docs/business_rules.md`.

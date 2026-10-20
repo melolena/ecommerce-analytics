@@ -21,6 +21,6 @@ Query files:
 
 The first query outputs are summarized in `docs/initial_analytics_results.md`.
 
-Next model work can add Power BI-friendly views or aggregate tables if they help the report perform and remain easy to maintain.
+Power BI-ready views are defined in `04_powerbi_views.sql` and exported by `commercepulse.export_powerbi`. Additional aggregate tables should be added only if report performance or maintenance needs justify them.
 
 Keep query definitions consistent with `docs/business_rules.md`.

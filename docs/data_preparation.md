@@ -25,8 +25,8 @@ The command reads the source CSV files from `data/raw/`, writes prepared tables 
 
 The initial run processed the nine source files. It retained all rows except exact duplicate geolocation records, producing 738,332 geolocation rows from 1,000,163 source rows. The summary CSV records source rows, processed rows, duplicate removals, missing-cell counts, and column counts for each table.
 
-## Next refinements
+## Tests and scope
 
-- Add transformation and validation tests.
-- Document explicit metric rules before creating KPI-ready tables.
-- Add any category or status normalization only after its business rule is agreed.
+Automated tests for preparation and validation are in `tests/`. Metric rules are documented in `business_rules.md` and applied in the analytical queries and reporting views.
+
+The preparation workflow intentionally preserves source categories and order statuses. Any future normalization should follow an approved business rule; it is not part of the current preparation step.

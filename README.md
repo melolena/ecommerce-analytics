@@ -2,7 +2,7 @@
 
 An independent portfolio project exploring e-commerce sales and operations with **Python, SQL, and Power BI**.
 
-**Status:** The data preparation workflow, analytical model, and three-page Power BI report are complete. The report is available as a Power BI file and as a PDF export; page screenshots are included with the Power BI project files.
+**Status:** The data preparation workflow, analytical model, automated tests, and three-page Power BI report are implemented. The public repository includes the Power BI file and page screenshots. A PDF export exists locally at `reports/ecommerce_analytics.pdf` but is not published in this repository.
 
 ## Business objective
 
@@ -39,11 +39,11 @@ This project uses the [Brazilian E-Commerce Public Dataset by Olist](https://www
 2. A relational analytical model with clearly defined table granularity.
 3. SQL queries and checks to validate key totals.
 4. An interactive Power BI report with Executive Overview, Product Performance, and Delivery & Customer Experience pages.
-5. A PDF export, page screenshots, metric definitions, and setup instructions.
+5. Page screenshots, metric definitions, and setup instructions.
 
 ## KPI principles
 
-Metric definitions and order-status rules will be documented before results are published.
+Metric definitions and order-status rules are documented in `docs/business_rules.md`.
 
 - Item revenue and freight will be reported separately.
 - Orders will be counted by distinct order ID, not by item rows.
@@ -59,7 +59,7 @@ ecommerce-analytics/
 ├── docs/                 # Data dictionary and business rules
 ├── notebooks/            # Exploratory analysis
 ├── powerbi/              # Power BI report, DAX measures, design notes, and page screenshots
-├── reports/              # PDF report export and generated data summaries
+├── reports/              # Generated data summaries; the PDF export is local only
 ├── src/commercepulse/    # Reusable Python code
 ├── sql/                  # SQL model and analytical queries
 ├── tests/                # Automated tests
@@ -76,6 +76,12 @@ python -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 python -m pip install -e .
+```
+
+Run the automated tests with:
+
+```powershell
+python -m pytest -q
 ```
 
 Download the Olist dataset and place its CSV files in `data/raw/`. Generate an initial inventory with:
@@ -97,12 +103,12 @@ Prepared CSVs and the database are written to `data/processed/`; run summaries a
 
 ## Power BI report
 
-The completed report is saved as `powerbi/ecommerce_analytics.pbix`. A PDF export is available at `reports/ecommerce_analytics.pdf`, and PNG screenshots of each report page are in `powerbi/`.
+The completed report is saved as `powerbi/ecommerce_analytics.pbix`. PNG screenshots of each report page are in `powerbi/`. A local PDF export at `reports/ecommerce_analytics.pdf` is not included in the public repository.
 
 The report contains three pages:
 
 1. **Executive Overview** — delivered sales, order value, freight, delivery timeliness, repeat customers, monthly revenue, state revenue, and payment-method usage.
-2. **Product Performance** — item revenue, freight, and order/item counts by product category.
+2. **Product Performance** — item revenue, freight, and order/item counts by product category. Both Top 10 charts use the same categories and Item Revenue rank order; bar lengths show each chart's own measure.
 3. **Delivery & Customer Experience** — on-time delivery trends, delivery outcomes, review scores, and missing delivery-date counts.
 
 Metric definitions and report design decisions are documented in `docs/business_rules.md`, `powerbi/measures.dax`, and `powerbi/report_design.md`.
@@ -116,10 +122,10 @@ Metric definitions and report design decisions are documented in `docs/business_
 - [x] Define initial sales/review rules and add core analytics queries
 - [x] Record initial analysis results
 - [x] Define and calculate repeat-customer rate; document timestamp handling
-- [x] Build the three-page Power BI report and export a PDF
+- [x] Build the three-page Power BI report
 - [x] Save screenshots of each report page
-- [ ] Add automated tests and reproducible setup instructions
+- [x] Add automated tests and document setup instructions
 
 ## About this project
 
-This is an independent learning and portfolio project based on public data. It is not commissioned by or affiliated with Olist. All findings will be documented after they have been produced and validated.
+This is an independent learning and portfolio project based on public data. It is not commissioned by or affiliated with Olist. Findings and methodological caveats are documented after validation.
