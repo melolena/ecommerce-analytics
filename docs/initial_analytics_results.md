@@ -14,7 +14,7 @@ Sales measures include orders with `order_status = 'delivered'` only. Item reven
 | Order value (items plus freight) | R$ 15,419,773.75 |
 | Average delivered order value | R$ 159.83 |
 
-Monthly results use `order_purchase_timestamp`. The latest month with delivered orders is August 2018, while source purchase timestamps extend into October 2018. Review late-period completeness before interpreting the end of the trend.
+Monthly results use `order_purchase_timestamp`. August 2018 is the latest purchase month with delivered orders. September contains 16 orders and October contains 4 orders through October 17; none is marked delivered. September has 15 canceled and 1 shipped order, and all four October orders are canceled. The delivered-sales series therefore ends in August. Treat September and October as a sparse observed tail, not as complete-month delivery performance; the local files do not establish why the tail is sparse.
 
 ## Delivery and reviews
 

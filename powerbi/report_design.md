@@ -36,7 +36,7 @@ The report uses English labels and the approved metric rules in `../docs/busines
 
 - Format revenue measures as Brazilian reais (R$) with two decimals.
 - Format rates as percentages with two decimals.
-- Show a note that the data are historical and that the latest purchase dates do not have delivered orders in every month.
+- Show a note that the data are historical, the delivered-sales series ends in August 2018, and September (16 orders) and October through the 17th (4 orders) contain no delivered orders. Explain that these are sparse observed months and should not be read as complete-month delivery performance.
 
 ## Page 2 — Product Performance (tab name; canvas title: Product Revenue & Freight Performance)
 
