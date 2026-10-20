@@ -1,8 +1,8 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE stg_customers (
-    customer_id TEXT PRIMARY KEY,
-    customer_unique_id TEXT NOT NULL,
+    customer_id TEXT PRIMARY KEY NOT NULL,
+    customer_unique_id TEXT,
     customer_zip_code_prefix TEXT,
     customer_city TEXT,
     customer_state TEXT
